@@ -26,7 +26,7 @@ function playGame() {
     let isDraw = false
 
     function playRound(humanChoice, computerChoice) {
-        console.log(`Computer chooses: ${computerChoice}`)
+        console.log(`You chose: ${humanChoice}, Computer chooses: ${computerChoice}`)
         if (humanChoice === computerChoice) {
             console.log('You draw')
             isDraw = true
