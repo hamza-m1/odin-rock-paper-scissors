@@ -45,33 +45,53 @@ function getHumanChoice() {
     }
 }
 
-let humanScore = 0
-let computerScore = 0
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        alert('you draw')
-    } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-        alert(`you win, ${humanChoice} beats ${computerChoice}`)
-        humanScore++
-    } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-        alert(`you win, ${humanChoice} beats ${computerChoice}`)
-        humanScore++
-    } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-        alert(`you win, ${humanChoice} beats ${computerChoice}`)
-        humanScore++
-    } else {
-        alert(`you lose, ${computerChoice} beats ${humanChoice}`)
-        computerScore++
-    }
-}
 
-let humanSelection = getHumanChoice()
-let computerSelection = getComputerChoice()
 // console.log(humanSelection)
 // console.log(computerSelection)
 
-// playRound(humanSelection, computerSelection)
-
 // console.log(`human score: ${humanScore}`)
 // console.log(`computer score: ${computerScore}`)
+
+function playGame() {
+    let humanScore = 0
+    let computerScore = 0
+    let isDraw = false
+
+    function playRound(humanChoice, computerChoice) {
+        if (humanChoice === computerChoice) {
+            alert('you draw')
+            isDraw = true
+        } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+            alert(`you win, ${humanChoice} beats ${computerChoice}`)
+            humanScore++
+        } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+            alert(`you win, ${humanChoice} beats ${computerChoice}`)
+            humanScore++
+        } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+            alert(`you win, ${humanChoice} beats ${computerChoice}`)
+            humanScore++
+        } else {
+            alert(`you lose, ${computerChoice} beats ${humanChoice}`)
+            computerScore++
+        }
+    }
+
+    for (let i = 1; i <= 5; i++) {
+        let humanSelection = getHumanChoice()
+        let computerSelection = getComputerChoice()
+        playRound(humanSelection, computerSelection)
+        if (isDraw === true) {
+            i--
+            isDraw = false
+        }
+        alert(`Score: you-${humanScore} : computer-${computerScore}`)
+    }
+    if (humanScore > computerScore) {
+        alert(`Congratulations, you win ${humanScore}:${computerScore}`)
+    } else {
+        alert(`you lose ${humanScore}:${computerScore}`)
+    }
+}
+
+playGame()
