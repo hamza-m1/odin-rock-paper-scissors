@@ -1,14 +1,12 @@
 function getComputerChoice() {
-    let computerChoice;
     let randomNumber = Math.floor(Math.random() * 3)
     if (randomNumber === 0) {
-        computerChoice = 'rock'
+        return 'rock'
     } else if (randomNumber === 1) {
-        computerChoice = 'paper'
+        return 'paper'
     } else {
-        computerChoice = 'scissors'
+        return 'scissors'
     }
-    return computerChoice;
 }
 
 function getHumanChoice() {
@@ -29,38 +27,43 @@ function playGame() {
 
     function playRound(humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
-            alert('you draw')
+            console.log('You draw')
             isDraw = true
         } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
-            alert('you win, rock beats scissors')
+            console.log('You win, rock beats scissors')
             humanScore++
         } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-            alert('you win, paper beats rock')
+            console.log('You win, paper beats rock')
             humanScore++
         } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-            alert('you win, scissors beats paper')
+            console.log('You win, scissors beats paper')
             humanScore++
         } else {
-            alert(`you lose, ${computerChoice} beats ${humanChoice}`)
+            console.log(`You lose, ${computerChoice} beats ${humanChoice}`)
             computerScore++
         }
     }
 
-    alert('Welcome to rock paper scissors. Best out of 5 wins. Good luck!')
+    console.log('Welcome to rock paper scissors. Best out of 5 wins. Good luck!')
 
     for (let i = 1; i <= 5; i++) {
+        console.log(`Round: ${i}`)
         playRound(getHumanChoice(), getComputerChoice())
         if (isDraw) {
             i--
             isDraw = false
         }
-        alert(`Score: you-${humanScore} : computer-${computerScore}`)
+        if (humanScore === 3 || computerScore === 3) {
+            i = 5
+        }
+        console.log(`Score: you ${humanScore} : computer ${computerScore}`)
+        console.log('_')
     }
 
     if (humanScore > computerScore) {
-        alert(`Congratulations, you win ${humanScore}:${computerScore}`)
+        console.log(`Congratulations, you win ${humanScore}:${computerScore}`)
     } else {
-        alert(`Unlucky, you lose ${humanScore}:${computerScore}`)
+        console.log(`Unlucky, you lose ${humanScore}:${computerScore}`)
     }
 }
 
