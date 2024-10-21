@@ -46,9 +46,11 @@ function playGame() {
         }
     }
 
+    alert('Welcome to rock paper scissors. Best out of 5 wins. Good luck!')
+
     for (let i = 1; i <= 5; i++) {
         playRound(getHumanChoice(), getComputerChoice())
-        if (isDraw === true) {
+        if (isDraw) {
             i--
             isDraw = false
         }
