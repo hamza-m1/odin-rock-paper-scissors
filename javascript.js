@@ -65,6 +65,7 @@ function playGame() {
     } else {
         console.log(`Unlucky, you lose ${humanScore}:${computerScore}`)
     }
+    console.log('Reload the page to play again!')
 }
 
 playGame()
