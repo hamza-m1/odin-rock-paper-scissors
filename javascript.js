@@ -24,7 +24,6 @@ checkAnswer:
 function getComputerChoice() {
     let computerChoice;
     let getRandomNumber = Math.floor(Math.random() * 100)
-    // console.log(getRandomNumber)
     if (getRandomNumber <= 33) {
         computerChoice = 'rock'
     } else if (getRandomNumber > 33 && getRandomNumber <= 66) {
@@ -32,15 +31,11 @@ function getComputerChoice() {
     } else {
         computerChoice = 'scissors'
     }
-    // console.log(computerChoice)
     return computerChoice;
 }
 
-getComputerChoice()
-
 function getHumanChoice() {
     let humanChoice = prompt('Choose rock, paper or scissors').toLowerCase()
-    // console.log(`in f: ${humanChoice}`)
     if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
         return humanChoice
     } else {
@@ -50,7 +45,32 @@ function getHumanChoice() {
     }
 }
 
-// console.log(getHumanChoice())
-
 let humanScore = 0
 let computerScore = 0
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        alert('you draw')
+    } else if (humanChoice === 'rock' && computerChoice === 'scissors') {
+        alert(`you win, ${humanChoice} beats ${computerChoice}`)
+        humanScore++
+    } else if (humanChoice === 'paper' && computerChoice === 'rock') {
+        alert(`you win, ${humanChoice} beats ${computerChoice}`)
+        humanScore++
+    } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
+        alert(`you win, ${humanChoice} beats ${computerChoice}`)
+        humanScore++
+    } else {
+        alert(`you lose, ${computerChoice} beats ${humanChoice}`)
+        computerScore++
+    }
+}
+
+let humanSelection = getHumanChoice()
+let computerSelection = getComputerChoice()
+// console.log(humanSelection)
+// console.log(computerSelection)
+playRound(humanSelection, computerSelection)
+
+// console.log(`human score: ${humanScore}`)
+// console.log(`computer score: ${computerScore}`)
