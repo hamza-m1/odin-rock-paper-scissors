@@ -23,10 +23,10 @@ checkAnswer:
 
 function getComputerChoice() {
     let computerChoice;
-    let getRandomNumber = Math.floor(Math.random() * 100)
-    if (getRandomNumber <= 33) {
+    let randomNumber = Math.floor(Math.random() * 3)
+    if (randomNumber === 0) {
         computerChoice = 'rock'
-    } else if (getRandomNumber > 33 && getRandomNumber <= 66) {
+    } else if (randomNumber === 1) {
         computerChoice = 'paper'
     } else {
         computerChoice = 'scissors'
@@ -70,7 +70,8 @@ let humanSelection = getHumanChoice()
 let computerSelection = getComputerChoice()
 // console.log(humanSelection)
 // console.log(computerSelection)
-playRound(humanSelection, computerSelection)
+
+// playRound(humanSelection, computerSelection)
 
 // console.log(`human score: ${humanScore}`)
 // console.log(`computer score: ${computerScore}`)
