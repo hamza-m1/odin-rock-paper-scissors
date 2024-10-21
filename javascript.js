@@ -1,5 +1,3 @@
-console.log('Hello World!')
-
 /*
 getComputerChoice:
 create a variable to store the computers choice
@@ -38,3 +36,22 @@ checkAnswer:
 
 -check if answer is valid using checkAnswer function, if so, return answer
 */
+
+// function askUser () {
+//     let choice = prompt('Choose rock, paper or scissors')
+//     return choice
+// }
+
+function getHumanChoice() {
+    let humanChoice = prompt('Choose rock, paper or scissors').toLowerCase()
+    // console.log(`in f: ${humanChoice}`)
+    if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
+        return humanChoice
+    } else {
+        alert('Invalid answer')
+        let humanChoice = getHumanChoice().toLowerCase()
+        return humanChoice
+    }
+}
+
+console.log(getHumanChoice())
