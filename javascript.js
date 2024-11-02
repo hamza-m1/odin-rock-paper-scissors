@@ -9,19 +9,10 @@ function getComputerChoice() {
     }
 }
 
-// function getHumanChoice() {
-//     let humanChoice = prompt('Choose rock, paper or scissors').toLowerCase()
-//     if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
-//         return humanChoice
-//     } else {
-//         alert('Invalid answer')
-//         let humanChoice = getHumanChoice()
-//         return humanChoice
-//     }
-// }
-
 function playRound(humanChoice, computerChoice) {
     roundChoices.textContent = `You chose: ${humanChoice}, Computer chooses: ${computerChoice}`
+
+    if (humanScore >= 5 || computerScore >= 5) return;
 
     if (humanChoice === computerChoice) {
         roundDecision.textContent = 'you draw'
@@ -36,6 +27,13 @@ function playRound(humanChoice, computerChoice) {
         computerScore++
     }
     score.textContent = `You: ${humanScore} : computer: ${computerScore}`
+}
+
+function checkScore() {
+    if (humanScore >= 5 || computerScore >= 5) {
+        roundChoices.textContent = ''
+        roundDecision.textContent = ''
+    }
 
     if (humanScore >= 5) {
         winningMessage.textContent = 'Congratulations, you win!'
@@ -48,35 +46,6 @@ let humanScore = 0
 let computerScore = 0
 let isDraw = false
 
-
-
-function playGame() {
-    console.log('Welcome to rock paper scissors. Best out of 5 wins. Good luck!')
-
-    // for (let i = 1; i <= 5; i++) {
-    //     console.log(`Round: ${i}`)
-    //     playRound(getHumanChoice(), getComputerChoice())
-    //     if (isDraw) {
-    //         i--
-    //         isDraw = false
-    //     }
-    //     if (humanScore === 3 || computerScore === 3) {
-    //         i = 5
-    //     }
-    //     console.log(`Score: you ${humanScore} : computer ${computerScore}`)
-    //     console.log('_')
-    // }
-
-    if (humanScore > computerScore) {
-        console.log(`Congratulations, you win ${humanScore}:${computerScore}`)
-    } else {
-        console.log(`Unlucky, you lose ${humanScore}:${computerScore}`)
-    }
-    console.log('Reload the page to play again!')
-}
-
-// playGame()
-
 const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
@@ -88,13 +57,52 @@ const roundDecision = document.querySelector('#roundDecision')
 const score = document.querySelector('#score')
 const winningMessage = document.querySelector('#winningMessage')
 
-
 rock.addEventListener('click', () => {
     playRound('rock', getComputerChoice())
+    checkScore()
 })
 paper.addEventListener('click', () => {
     playRound('paper', getComputerChoice())
+    checkScore()
 })
 scissors.addEventListener('click', () => {
     playRound('scissors', getComputerChoice())
+    checkScore()
 })
+
+const playAgainButton = document.querySelector('#playAgainButton')
+playAgainButton.addEventListener('click', () => {
+    humanScore = 0
+    computerScore = 0
+    winningMessage.textContent = ''
+    score.textContent = `You: ${humanScore} : computer: ${computerScore}`
+})
+
+
+
+
+
+
+
+
+
+// for (let i = 1; i <= 5; i++) {
+//     console.log(`Round: ${i}`)
+//     playRound(getHumanChoice(), getComputerChoice())
+//     if (isDraw) {
+//         i--
+//         isDraw = false
+//     }
+//     if (humanScore === 3 || computerScore === 3) {
+//         i = 5
+//     }
+//     console.log(`Score: you ${humanScore} : computer ${computerScore}`)
+//     console.log('_')
+// }
+
+// if (humanScore > computerScore) {
+//     console.log(`Congratulations, you win ${humanScore}:${computerScore}`)
+// } else {
+//     console.log(`Unlucky, you lose ${humanScore}:${computerScore}`)
+// }
+// console.log('Reload the page to play again!')
