@@ -16,7 +16,6 @@ function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
         roundDecision.textContent = 'you draw'
-        isDraw = true
     } else if (humanChoice === 'rock' && computerChoice === 'scissors' ||
         humanChoice === 'paper' && computerChoice === 'rock' ||
         humanChoice === 'scissors' && computerChoice === 'paper') {
@@ -30,21 +29,19 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function checkScore() {
-    if (humanScore >= 5 || computerScore >= 5) {
+    if (humanScore >= 5) {
         roundChoices.textContent = ''
         roundDecision.textContent = ''
-    }
-
-    if (humanScore >= 5) {
         winningMessage.textContent = 'Congratulations, you win!'
     } else if (computerScore >= 5) {
+        roundChoices.textContent = ''
+        roundDecision.textContent = ''
         winningMessage.textContent = 'Unlucky, you lose'
     }
 }
 
 let humanScore = 0
 let computerScore = 0
-let isDraw = false
 
 const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
@@ -77,32 +74,3 @@ playAgainButton.addEventListener('click', () => {
     winningMessage.textContent = ''
     score.textContent = `You: ${humanScore} : computer: ${computerScore}`
 })
-
-
-
-
-
-
-
-
-
-// for (let i = 1; i <= 5; i++) {
-//     console.log(`Round: ${i}`)
-//     playRound(getHumanChoice(), getComputerChoice())
-//     if (isDraw) {
-//         i--
-//         isDraw = false
-//     }
-//     if (humanScore === 3 || computerScore === 3) {
-//         i = 5
-//     }
-//     console.log(`Score: you ${humanScore} : computer ${computerScore}`)
-//     console.log('_')
-// }
-
-// if (humanScore > computerScore) {
-//     console.log(`Congratulations, you win ${humanScore}:${computerScore}`)
-// } else {
-//     console.log(`Unlucky, you lose ${humanScore}:${computerScore}`)
-// }
-// console.log('Reload the page to play again!')
