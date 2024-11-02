@@ -9,36 +9,46 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt('Choose rock, paper or scissors').toLowerCase()
-    if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
-        return humanChoice
-    } else {
-        alert('Invalid answer')
-        let humanChoice = getHumanChoice()
-        return humanChoice
-    }
-}
+// function getHumanChoice() {
+//     let humanChoice = prompt('Choose rock, paper or scissors').toLowerCase()
+//     if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
+//         return humanChoice
+//     } else {
+//         alert('Invalid answer')
+//         let humanChoice = getHumanChoice()
+//         return humanChoice
+//     }
+// }
 
 function playRound(humanChoice, computerChoice) {
-    console.log(`You chose: ${humanChoice}, Computer chooses: ${computerChoice}`)
+    roundChoices.textContent = `You chose: ${humanChoice}, Computer chooses: ${computerChoice}`
+
     if (humanChoice === computerChoice) {
-        console.log('You draw')
+        roundDecision.textContent = 'you draw'
         isDraw = true
     } else if (humanChoice === 'rock' && computerChoice === 'scissors' ||
         humanChoice === 'paper' && computerChoice === 'rock' ||
         humanChoice === 'scissors' && computerChoice === 'paper') {
-        console.log(`You win, ${humanChoice} beats ${computerChoice}`)
+        roundDecision.textContent = `You win, ${humanChoice} beats ${computerChoice}`
         humanScore++
     } else {
-        console.log(`You lose, ${computerChoice} beats ${humanChoice}`)
+        roundDecision.textContent = `You lose, ${computerChoice} beats ${humanChoice}`
         computerScore++
+    }
+    score.textContent = `You: ${humanScore} : computer: ${computerScore}`
+
+    if (humanScore >= 5) {
+        winningMessage.textContent = 'Congratulations, you win!'
+    } else if (computerScore >= 5) {
+        winningMessage.textContent = 'Unlucky, you lose'
     }
 }
 
 let humanScore = 0
 let computerScore = 0
 let isDraw = false
+
+
 
 function playGame() {
     console.log('Welcome to rock paper scissors. Best out of 5 wins. Good luck!')
@@ -67,20 +77,17 @@ function playGame() {
 
 // playGame()
 
-
-
-
-
-
-
-
-
-
-
-
 const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
+
+const display = document.querySelector('#display')
+const roundChoices = document.querySelector('#roundChoices')
+const roundDecision = document.querySelector('#roundDecision')
+
+const score = document.querySelector('#score')
+const winningMessage = document.querySelector('#winningMessage')
+
 
 rock.addEventListener('click', () => {
     playRound('rock', getComputerChoice())
